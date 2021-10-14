@@ -1,8 +1,11 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import page_object.MainPage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,13 +17,21 @@ import static utils.PropertiesReader.*;
 public class DriverTest {
 
     WebDriver driver;
+    //WebElement item = driver.findElement(By.xpath("123"));
+    MainPage mainPage;
 
     @BeforeEach
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         driver = new ChromeDriver();
+        mainPage = new MainPage(driver);
         driver.get(getProperties().getProperty("home.page"));
         //driver.get("https://shop.acodemy.lv");
+    }
+
+    @Test
+    public void productsTest(){
+        mainPage.getAllProducts();
     }
 
     @Test
@@ -30,10 +41,19 @@ public class DriverTest {
     @Test
     public void checkIfTitleIsCorrect() {
         assertThat(driver.getTitle(), equalTo("Online shop – acodemy – Just another WordPress site"));
+
+        //driver.findElement(By.xpath("//get/item")).click();
+        //item.click();
     }
 
     @AfterEach
     public void tearDown() {
         driver.quit();
     }
+
 }
+
+//class
+//id
+//css
+//xpath
