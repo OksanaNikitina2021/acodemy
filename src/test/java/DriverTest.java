@@ -16,7 +16,7 @@ import static utils.PropertiesReader.*;
 
 public class DriverTest {
 
-    WebDriver driver;
+/*    WebDriver driver;
     //WebElement item = driver.findElement(By.xpath("123"));
     MainPage mainPage;
 
@@ -49,7 +49,7 @@ public class DriverTest {
     @AfterEach
     public void tearDown() {
         driver.quit();
-    }
+    }*/
 
 }
 
