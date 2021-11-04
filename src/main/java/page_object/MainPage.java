@@ -3,15 +3,16 @@ package page_object;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import utils.WebDriverManager;
+import utils.LocalDriverManager;
+import utils.SharedContext;
 
 import java.util.List;
 
+import static utils.StaticKeys.CURRENT_ITEM;
+
 public class MainPage {
 
-    WebDriver driver = WebDriverManager.getInstance();
+    WebDriver driver = LocalDriverManager.getInstance();
     private final By productElements = By.xpath("//ul[contains(@class,'products')]/li");
 
     public List<WebElement> getAllProducts() {
@@ -24,6 +25,8 @@ public class MainPage {
                 .filter(product -> product.getText().contains(productName))
                 .findFirst()
                 .ifPresent(WebElement::click);
+
+        SharedContext.setValue(CURRENT_ITEM, productName);
 
 /*        for(int i = 0; i < getAllProducts().size(); i++){
             if(getAllProducts().get(i).getText().equals(productName)){
